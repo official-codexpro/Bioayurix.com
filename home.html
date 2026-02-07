@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+
+<body>
+    <!-- ================= HERO SECTION START ================= -->
+    <section
+        class="relative min-h-[70vh] lg:min-h-[90vh] bg-gradient-to-r from-[#eaf7ef] via-[#e9f4f8] to-[#dff0fb] overflow-hidden">
+
+        <!-- ================= TOP BAR ================= -->
+        <div class="w-full h-10 border-b border-black/40">
+            <div
+                class="max-w-7xl mx-auto px-4 sm:px-6 h-full flex items-center justify-between text-xs sm:text-sm text-gray-600">
+
+                <!-- Left -->
+                <div class="hidden sm:flex items-center gap-6">
+                    <span class="flex items-center gap-2"><i class="fa-regular fa-envelope"></i> info@example.com</span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-phone"></i> +2 123 654 7898</span>
+                    <span class="flex items-center gap-2"><i class="fa-regular fa-circle-question"></i> Need
+                        Help?</span>
+                </div>
+
+                <!-- Right (PREMIUM ICON STYLE – UNIFIED COLOR) -->
+                <div class="flex items-center gap-4 text-gray-600">
+
+                    <!-- Daily Deal -->
+                    <span class="hidden sm:flex items-center gap-2 hover:text-teal-600 transition">
+                        <i class="fa-regular fa-clock text-teal-600"></i>
+                        <span>Daily Deal</span>
+                    </span>
+
+                    <!-- Currency -->
+                    <span class="flex items-center gap-1 cursor-pointer hover:text-teal-600 transition">
+                        <i class="fa-solid fa-dollar-sign text-teal-600 text-xs"></i>
+                        <span>USD</span>
+                    </span>
+
+                    <!-- Language -->
+                    <span class="flex items-center gap-1 cursor-pointer hover:text-teal-600 transition">
+                        <i class="fa-solid fa-globe text-teal-600 text-xs"></i>
+                        <span>EN</span>
+                    </span>
+
+                    <!-- Follow Us (Desktop) -->
+                    <span class="hidden sm:flex items-center gap-2">
+                        <span>Follow Us:</span>
+                        <i class="fa-brands fa-facebook-f text-teal-600 hover:opacity-80 transition cursor-pointer"></i>
+                        <i class="fa-brands fa-twitter text-teal-600 hover:opacity-80 transition cursor-pointer"></i>
+                        <i
+                            class="fa-brands fa-linkedin-in text-teal-600 hover:opacity-80 transition cursor-pointer"></i>
+                    </span>
+
+                    <!-- Social Icons (Mobile) -->
+                    <span class="flex sm:hidden items-center gap-3">
+                        <i class="fa-brands fa-facebook-f text-teal-600"></i>
+                        <i class="fa-brands fa-twitter text-teal-600"></i>
+                        <i class="fa-brands fa-linkedin-in text-teal-600"></i>
+                    </span>
+
+                </div>
+
+
+            </div>
+        </div>
+
+        <!-- ================= NAVBAR ================= -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
+
+            <!-- Logo -->
+            <div class="flex items-center gap-2 text-xl sm:text-2xl font-extrabold text-teal-700">
+                <i class="fa-solid fa-heart-pulse"></i> medion
+            </div>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden lg:flex items-center gap-8 font-medium text-gray-700">
+                <a href="#" class="hover:text-teal-600">Home</a>
+                <a href="#" class="hover:text-teal-600">About</a>
+                <a href="#" class="hover:text-teal-600">Pages</a>
+                <a href="#" class="hover:text-teal-600">Account</a>
+                <a href="#" class="hover:text-teal-600">Category</a>
+                <a href="#" class="hover:text-teal-600">Shop</a>
+                <a href="#" class="hover:text-teal-600">Blog</a>
+                <a href="#" class="hover:text-teal-600">Contact</a>
+            </nav>
+
+            <!-- Right Icons -->
+            <div class="flex items-center gap-4 text-lg sm:text-xl text-gray-700">
+                <i class="fa-regular fa-heart"></i>
+                <i class="fa-solid fa-cart-shopping"></i>
+
+                <!-- Hamburger -->
+                <button id="hamburger" class="lg:hidden flex flex-col gap-[5px]">
+                    <span class="line w-6 h-[2px] bg-gray-700 transition"></span>
+                    <span class="line w-6 h-[2px] bg-gray-700 transition"></span>
+                    <span class="line w-6 h-[2px] bg-gray-700 transition"></span>
+                </button>
+            </div>
+
+        </div>
+
+        <!-- ================= MOBILE MENU ================= -->
+        <div id="mobileMenu" class="lg:hidden max-h-0 overflow-hidden transition-all duration-500 bg-white shadow-md">
+            <nav class="flex flex-col p-6 gap-4 text-gray-700 font-medium">
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Pages</a>
+                <a href="#">Account</a>
+                <a href="#">Category</a>
+                <a href="#">Shop</a>
+                <a href="#">Blog</a>
+                <a href="#">Contact</a>
+            </nav>
+        </div>
+
+        <!-- ================= HERO CONTENT ================= -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-8 lg:pt-14 grid grid-cols-1 lg:grid-cols-2 gap-12 items-end">
+
+            <!-- LEFT -->
+            <div class="pb-16 lg:pb-[20%] text-center lg:text-left">
+
+                <span
+                    class="inline-block mb-4 px-6 py-1 text-xs sm:text-sm font-semibold tracking-widest text-white bg-teal-600 rounded-full">
+                    EASY HEALTH CARE
+                </span>
+
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-[#0b2c3d]">
+                    We Provide Medicine And<br>
+                    <span class="text-teal-600">Best Health Care</span> For Your<br>
+                    Family In City
+                </h1>
+
+                <p class="mt-4 sm:mt-5 max-w-xl mx-auto lg:mx-0 text-gray-600 text-sm sm:text-base">
+                    There are many variations of passages available but the majority have
+                    suffered alteration in some form.
+                </p>
+
+                <div class="mt-8 flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+                    <a class="px-6 py-3 bg-teal-600 text-white font-semibold rounded-lg hover:bg-teal-700 transition">
+                        Shop Now <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </a>
+                    <a class="px-6 py-3 bg-rose-500 text-white font-semibold rounded-lg hover:bg-rose-600 transition">
+                        Learn More <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- RIGHT IMAGE -->
+            <div class="relative flex justify-center items-end">
+
+                <!-- Rings (desktop only) -->
+                <div
+                    class="hidden sm:block absolute bottom-24 w-[420px] h-[420px] rounded-full border-[6px] border-teal-200 opacity-40">
+                </div>
+                <div
+                    class="hidden sm:block absolute bottom-24 w-[320px] h-[320px] rounded-full border-[6px] border-teal-300 opacity-30">
+                </div>
+
+                <img src="/IMG/hero-1.png" class="relative z-10 max-h-[360px] sm:max-h-[420px] lg:max-h-[560px]" />
+
+                <div
+                    class="absolute right-2 sm:right-0 bottom-20 sm:bottom-28 bg-white shadow-lg rounded-full px-4 sm:px-5 py-2 sm:py-3 flex items-center gap-3">
+                    <div
+                        class="w-9 h-9 sm:w-10 sm:h-10 bg-teal-600 text-white rounded-full flex items-center justify-center">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <span class="text-xs sm:text-sm font-semibold">
+                        Delivery within<br><span class="text-teal-600">30 minutes</span>
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+    <!-- ================= HERO SECTION END ================= -->
+  
+
+</body>
+<!-- ================= HERO NEVBAR SECTION :START ================= -->
+  <script>
+        const btn = document.getElementById("hamburger");
+        const menu = document.getElementById("mobileMenu");
+        const lines = btn.querySelectorAll(".line");
+
+        btn.addEventListener("click", () => {
+            menu.classList.toggle("max-h-[400px]");
+            lines[0].classList.toggle("rotate-45");
+            lines[0].classList.toggle("translate-y-[7px]");
+            lines[1].classList.toggle("opacity-0");
+            lines[2].classList.toggle("-rotate-45");
+            lines[2].classList.toggle("-translate-y-[7px]");
+        });
+    </script>
+<!-- ================= HERO NEVBAR SECTION :END ================= -->
+
+</html>
