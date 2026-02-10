@@ -96,6 +96,134 @@ class="fixed inset-0 bg-black/40 opacity-0 invisible transition-all duration-300
 </div>
 <!-- ================= ONSCROLL NEVBAR SECTION  :END ================= -->
 
+<!-- ================= PREMIUM MEDICAL PRODUCT SECTION ================= -->
+<section class="bg-gradient-to-b from-white to-teal-50/40 py-16 lg:py-24">
+  <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-start">
+
+    <!-- ================= LEFT : IMAGE GALLERY ================= -->
+    <div>
+
+      <!-- Main Image -->
+      <div class="relative bg-white rounded-3xl shadow-2xl p-8">
+        <div class="absolute inset-0 bg-white blur-3xl rounded-3xl"></div>
+
+        <img id="mainImage"
+             src="IMG/2.jpeg"
+             class="relative w-full h-[420px] object-contain transition duration-300">
+      </div>
+
+      <!-- Thumbnails (BOTTOM ON ALL SCREENS) -->
+      <div class="flex gap-4 mt-6 justify-center lg:justify-start flex-wrap">
+        <img src="IMG/2.jpeg"
+             class="thumb w-20 h-20 object-cover rounded-xl border-2 border-teal-500 cursor-pointer transition">
+
+        <img src="IMG/2.jpeg"
+             class="thumb w-20 h-20 object-cover rounded-xl border border-gray-200 cursor-pointer transition">
+
+        <img src="IMG/2.jpeg"
+             class="thumb w-20 h-20 object-cover rounded-xl border border-gray-200 cursor-pointer transition">
+
+        <img src="IMG/2.jpeg"
+             class="thumb w-20 h-20 object-cover rounded-xl border border-gray-200 cursor-pointer transition">
+      </div>
+
+    </div>
+
+    <!-- ================= RIGHT : PRODUCT DETAILS ================= -->
+    <div>
+
+      <!-- Medical Trust Badge -->
+      <span class="inline-block bg-teal-100 text-teal-700 text-sm font-semibold px-4 py-1 rounded-full mb-4">
+        Doctor Recommended • GMP Certified • ISO Approved
+      </span>
+
+      <!-- Product Title -->
+      <h1 class="text-3xl lg:text-5xl font-extrabold text-gray-900 leading-tight">
+        Bioayurix Advanced Immunity Formula
+      </h1>
+
+      <!-- Description -->
+      <p class="mt-5 text-lg text-gray-600 leading-relaxed">
+        Clinically tested herbal formulation designed to enhance immune response,
+        improve vitality, and provide long-term wellness support using
+        scientifically validated Ayurvedic ingredients.
+      </p>
+
+      <!-- Rating -->
+      <div class="flex items-center gap-3 mt-6">
+        <div class="flex text-yellow-400 text-lg">★★★★★</div>
+        <span class="text-gray-600 text-sm">(1,248 Verified Reviews)</span>
+      </div>
+
+      <!-- Feature Highlights -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
+
+        <div class="flex gap-3">
+          <div class="w-10 h-10 flex items-center justify-center rounded-full bg-teal-100 text-teal-600">✓</div>
+          <div>
+            <h4 class="font-semibold">Boosts Immunity</h4>
+            <p class="text-sm text-gray-500">Strengthens natural defense system.</p>
+          </div>
+        </div>
+
+        <div class="flex gap-3">
+          <div class="w-10 h-10 flex items-center justify-center rounded-full bg-teal-100 text-teal-600">✓</div>
+          <div>
+            <h4 class="font-semibold">100% Herbal</h4>
+            <p class="text-sm text-gray-500">Pure Ayurvedic extracts.</p>
+          </div>
+        </div>
+
+        <div class="flex gap-3">
+          <div class="w-10 h-10 flex items-center justify-center rounded-full bg-teal-100 text-teal-600">✓</div>
+          <div>
+            <h4 class="font-semibold">No Side Effects</h4>
+            <p class="text-sm text-gray-500">Safe for long-term use.</p>
+          </div>
+        </div>
+
+        <div class="flex gap-3">
+          <div class="w-10 h-10 flex items-center justify-center rounded-full bg-teal-100 text-teal-600">✓</div>
+          <div>
+            <h4 class="font-semibold">Clinically Tested</h4>
+            <p class="text-sm text-gray-500">Scientifically validated formula.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Price -->
+      <div class="mt-10 flex items-center gap-6">
+        <span class="text-4xl font-bold text-gray-900">₹999</span>
+        <span class="text-xl text-gray-400 line-through">₹1499</span>
+        <span class="bg-red-100 text-red-600 text-sm px-3 py-1 rounded-full font-semibold">
+          33% OFF
+        </span>
+      </div>
+
+      <!-- Buttons -->
+      <div class="mt-8 flex flex-col sm:flex-row gap-4">
+        <button class="bg-teal-600 hover:bg-teal-700 text-white px-10 py-3 rounded-xl font-semibold shadow-lg transition">
+          Add to Cart
+        </button>
+
+        <button class="border border-gray-300 hover:border-teal-600 hover:text-teal-600 px-10 py-3 rounded-xl font-semibold transition">
+          Buy Now
+        </button>
+      </div>
+
+      <!-- Trust Notes -->
+      <div class="mt-8 text-sm text-gray-500 space-y-1">
+        <p>✓ Lab Tested for Purity</p>
+        <p>✓ Manufactured in GMP Certified Facility</p>
+        <p>✓ Fast & Secure Delivery</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<!-- ================= PREMIUM MEDICAL PRODUCT SECTION ================= -->
 
 
 
@@ -129,5 +257,39 @@ overlay.addEventListener("click", () => {
 });
 </script>
 <!-- ================= ONSCROLL NEVBAR SECTION  :END ================= -->
+
+
+<!-- ================= PREMIUM MEDICAL PRODUCT SECTION START ================= -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const mainImage = document.getElementById("mainImage");
+    const thumbs = document.querySelectorAll(".thumb");
+
+    thumbs.forEach(thumb => {
+        thumb.addEventListener("click", function () {
+
+            mainImage.style.opacity = 0;
+
+            setTimeout(() => {
+                mainImage.src = this.src.replace("w=400", "w=900");
+                mainImage.style.opacity = 1;
+            }, 150);
+
+            thumbs.forEach(t => {
+                t.classList.remove("border-2", "border-teal-500");
+                t.classList.add("border", "border-gray-200");
+            });
+
+            this.classList.remove("border", "border-gray-200");
+            this.classList.add("border-2", "border-teal-500");
+
+        });
+    });
+
+});
+</script>
+
+<!-- ================= PREMIUM MEDICAL PRODUCT SECTION END ================= -->
 
 </html>
