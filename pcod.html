@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+<!-- =================  ONSCROLL NEVBAR SECTION :START ================= -->
+<nav id="stickyNav"
+class="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-md shadow-md z-[999]
+{% if request.resolver_match.url_name == 'home' %}
+-translate-y-full
+{% else %}
+translate-y-0
+{% endif %}
+transition-transform duration-500">
+
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+
+        <!-- Logo -->
+        <div class="flex items-center gap-2 text-xl font-extrabold text-teal-700">
+            <i class="fa-solid fa-heart-pulse"></i>
+            Bioayurix
+        </div>
+
+        <!-- Desktop Menu -->
+        <ul class="hidden lg:flex items-center gap-8 font-medium text-gray-700">
+            <li><a href="#" class="hover:text-teal-600 transition">Home</a></li>
+            <li><a href="#" class="hover:text-teal-600 transition">About</a></li>
+            <li><a href="#" class="hover:text-teal-600 transition">Pages</a></li>
+            <li><a href="#" class="hover:text-teal-600 transition">Account</a></li>
+            <li><a href="#" class="hover:text-teal-600 transition">Category</a></li>
+            <li><a href="#" class="hover:text-teal-600 transition">Shop</a></li>
+            <li><a href="#" class="hover:text-teal-600 transition">Blog</a></li>
+            <li><a href="#" class="hover:text-teal-600 transition">Contact</a></li>
+        </ul>
+
+        <!-- Icons -->
+        <div class="flex items-center gap-4 text-lg text-gray-700">
+
+            <i class="fa-solid fa-magnifying-glass cursor-pointer hover:text-teal-600 transition"></i>
+
+            <div class="relative cursor-pointer">
+                <i class="fa-regular fa-heart"></i>
+                <span class="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-teal-600
+                text-white text-xs flex items-center justify-center">2</span>
+            </div>
+
+            <div class="relative cursor-pointer">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-teal-600
+                text-white text-xs flex items-center justify-center">5</span>
+            </div>
+
+            <!-- Hamburger -->
+            <button id="openSidebar" class="lg:hidden ml-2 text-xl">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+        </div>
+
+    </div>
+</nav>
+<!-- ================= SIDEBAR ================= -->
+<div id="sidebar"
+class="fixed top-0 right-0 h-full w-72 bg-white shadow-xl z-[1000]
+translate-x-full transition-transform duration-500">
+
+    <div class="flex justify-between items-center p-6 border-b">
+        <h2 class="text-lg font-bold text-teal-700">Menu</h2>
+        <button id="closeSidebar" class="text-xl">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+
+    <nav class="flex flex-col p-6 gap-5 font-medium text-gray-700">
+        <a href="#" class="hover:text-teal-600 transition">Home</a>
+        <a href="#" class="hover:text-teal-600 transition">About</a>
+        <a href="#" class="hover:text-teal-600 transition">Pages</a>
+        <a href="#" class="hover:text-teal-600 transition">Account</a>
+        <a href="#" class="hover:text-teal-600 transition">Category</a>
+        <a href="#" class="hover:text-teal-600 transition">Shop</a>
+        <a href="#" class="hover:text-teal-600 transition">Blog</a>
+        <a href="#" class="hover:text-teal-600 transition">Contact</a>
+    </nav>
+</div>
+
+<!-- Overlay -->
+<div id="overlay"
+class="fixed inset-0 bg-black/40 opacity-0 invisible transition-all duration-300 z-[999]">
+</div>
+<!-- ================= ONSCROLL NEVBAR SECTION  :END ================= -->
+
+
+
+
+
+
+
+
+
+
+</body>
+<!-- ================= ONSCROLL NEVBAR SECTION  :START ================= -->
+<script>
+const sidebar = document.getElementById("sidebar");
+const overlay = document.getElementById("overlay");
+const openBtn = document.getElementById("openSidebar");
+const closeBtn = document.getElementById("closeSidebar");
+
+openBtn.addEventListener("click", () => {
+    sidebar.classList.remove("translate-x-full");
+    overlay.classList.remove("opacity-0", "invisible");
+});
+
+closeBtn.addEventListener("click", () => {
+    sidebar.classList.add("translate-x-full");
+    overlay.classList.add("opacity-0", "invisible");
+});
+
+overlay.addEventListener("click", () => {
+    sidebar.classList.add("translate-x-full");
+    overlay.classList.add("opacity-0", "invisible");
+});
+</script>
+<!-- ================= ONSCROLL NEVBAR SECTION  :END ================= -->
+
+</html>
