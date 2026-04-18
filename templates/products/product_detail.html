@@ -1,0 +1,449 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ product.name }} – Bioayurix{% endblock %}
+{% block meta_description %}{{ product.short_description|default:product.description }}{% endblock %}
+{% block canonical %}https://bioayurix.com/products/{{ product.slug }}/{% endblock %}
+
+{% block og_type %}product{% endblock %}
+{% block og_title %}{{ product.name }} – Bioayurix{% endblock %}
+{% block og_description %}{{ product.short_description|default:product.description }}{% endblock %}
+{% block og_url %}https://bioayurix.com/products/{{ product.slug }}/{% endblock %}
+{% if product.image %}{% block og_image %}https://bioayurix.com{{ product.image.url }}{% endblock %}{% endif %}
+{% block twitter_title %}{{ product.name }} – Bioayurix{% endblock %}
+{% block twitter_description %}{{ product.short_description|default:product.description }}{% endblock %}
+{% if product.image %}{% block twitter_image %}https://bioayurix.com{{ product.image.url }}{% endblock %}{% endif %}
+
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "{{ product.name }}",
+  "description": "{{ product.short_description|default:product.description }}",
+  {% if product.image %}"image": "https://bioayurix.com{{ product.image.url }}",{% endif %}
+  "brand": {
+    "@type": "Brand",
+    "name": "Bioayurix"
+  },
+  "sku": "{{ product.id }}",
+  "mpn": "{{ product.id }}",
+  "url": "https://bioayurix.com/products/{{ product.slug }}/",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "{{ product.rating }}",
+    "reviewCount": "{{ product.review_count }}"
+  },
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "INR",
+    "price": "{{ product.price }}",
+    "availability": "https://schema.org/InStock",
+    "url": "https://bioayurix.com/products/{{ product.slug }}/",
+    "seller": {
+      "@type": "Organization",
+      "name": "Bioayurix"
+    }
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://bioayurix.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Products", "item": "https://bioayurix.com/products/"},
+    {"@type": "ListItem", "position": 3, "name": "{{ product.name }}", "item": "https://bioayurix.com/products/{{ product.slug }}/"}
+  ]
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<!-- ================= PRODUCT SHOWCASE SECTION ================= -->
+<section class="bg-gradient-to-b from-white to-teal-50/40 mt-16 py-16 lg:py-24">
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-start">
+
+        <!-- ================= LEFT: IMAGE GALLERY ================= -->
+        <div class="w-full">
+            <!-- Main Image Card -->
+            <div class="relative bg-white rounded-3xl shadow-xl p-4 lg:p-8 overflow-hidden">
+                <!-- Soft medical glow -->
+                <div class="absolute inset-0 bg-white rounded-3xl"></div>
+
+                <!-- Image Wrapper -->
+                <div class="relative w-full aspect-square lg:aspect-auto lg:h-[420px]">
+                    <img
+                        id="mainImage"
+                        src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/placeholder.png' %}{% endif %}"
+                        alt="{{ product.name }}"
+                        class="w-full h-full object-contain transition-opacity duration-300 ease-in-out"
+                    />
+                </div>
+            </div>
+
+            <!-- Thumbnails -->
+            <div class="flex gap-4 mt-6 justify-center lg:justify-start flex-wrap">
+                {% for img in product.gallery_images %}
+                <img
+                    src="{% static img %}"
+                    alt="{{ product.name }} - Image {{ forloop.counter }}"
+                    class="thumb w-20 h-20 object-cover rounded-xl cursor-pointer transition duration-200
+                        {% if forloop.first %}border-2 border-teal-600{% else %}border border-gray-200 hover:border-teal-400{% endif %}"
+                />
+                {% endfor %}
+            </div>
+        </div>
+        <!-- ================= END IMAGE GALLERY ================= -->
+
+        <!-- ================= RIGHT: PRODUCT DETAILS ================= -->
+        <div>
+            <!-- Medical Trust Badge -->
+            {% if product.badge_text %}
+            <span class="inline-block bg-teal-100 text-teal-700 text-sm font-semibold px-4 py-1 rounded-full mb-4">
+                {{ product.badge_text }}
+            </span>
+            {% endif %}
+
+            <!-- Product Title -->
+            <h1 class="text-3xl lg:text-5xl font-extrabold text-gray-900 leading-tight">
+                {{ product.name }}
+            </h1>
+
+            <!-- Description -->
+            <p class="mt-5 text-lg text-gray-600 leading-relaxed">
+                {{ product.description }}
+            </p>
+
+            <!-- Rating -->
+            <div class="flex items-center gap-3 mt-6">
+                <div class="flex text-yellow-400 text-lg">
+                    {% for i in "12345" %}
+                        {% if forloop.counter <= product.rating %}
+                            <span>&#9733;</span>
+                        {% else %}
+                            <span class="text-gray-300">&#9733;</span>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <span class="text-gray-600 text-sm">({{ product.review_count|default:"0" }} Verified Reviews)</span>
+            </div>
+
+            <!-- Feature Highlights -->
+            {% if product.features %}
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
+                {% for feature in product.features %}
+                <div class="flex gap-3">
+                    <div class="w-10 h-10 flex items-center justify-center rounded-full bg-teal-100 text-teal-600 shrink-0">
+                        &#10003;
+                    </div>
+                    <div>
+                        <h4 class="font-semibold">{{ feature.title }}</h4>
+                        <p class="text-sm text-gray-500">{{ feature.description }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- Price -->
+            <div class="mt-10 flex items-center gap-6">
+                <span class="text-4xl font-bold text-gray-900">&#8377;{{ product.price }}</span>
+            </div>
+
+            <!-- Buttons -->
+            <div class="mt-8 flex flex-col sm:flex-row gap-4">
+                <form method="post" action="{% url 'cart:cart_add' product.id %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="quantity" value="1">
+                    <button type="submit"
+                        class="bg-teal-600 hover:bg-teal-700 text-white px-10 py-3 rounded-xl font-semibold shadow-lg transition">
+                        Add to Cart
+                    </button>
+                </form>
+
+                <form method="post" action="{% url 'cart:cart_add' product.id %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="quantity" value="1">
+                    <input type="hidden" name="buy_now" value="1">
+                    <button type="submit"
+                        class="border border-gray-300 hover:border-teal-600 hover:text-teal-600 px-10 py-3 rounded-xl font-semibold transition text-center">
+                        Buy Now
+                    </button>
+                </form>
+            </div>
+
+            <!-- Trust Notes -->
+            <div class="mt-8 text-sm text-gray-500 space-y-1">
+                <p>&#10003; Lab Tested for Purity</p>
+                <p>&#10003; Manufactured in GMP Certified Facility</p>
+                <p>&#10003; Fast &amp; Secure Delivery</p>
+            </div>
+        </div>
+        <!-- ================= END PRODUCT DETAILS ================= -->
+
+    </div>
+</section>
+<!-- ================= END PRODUCT SHOWCASE ================= -->
+
+
+<!-- ================= A+ PREMIUM STORY SECTION ================= -->
+<section class="bg-gradient-to-b from-white to-teal-50/30 py-20 lg:py-28">
+    <div class="max-w-7xl mx-auto px-6 space-y-28">
+
+        <!-- ================= BLOCK 1: Backed by Science ================= -->
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+            <!-- Content -->
+            <div>
+                <span class="text-teal-600 font-semibold uppercase tracking-widest text-sm">
+                    Certified Quality
+                </span>
+
+                <h2 class="mt-4 text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight">
+                    Backed by Science. Powered by Nature.
+                </h2>
+
+                <p class="mt-6 text-lg text-gray-600 leading-relaxed">
+                    Every Bioayurix capsule is crafted using clinically studied herbal
+                    extracts and manufactured in GMP-certified facilities to guarantee
+                    purity, safety, and consistent effectiveness.
+                </p>
+
+                <!-- Premium Feature Cards -->
+                <div class="mt-10 grid sm:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-2xl p-6 shadow-md border border-teal-50">
+                        <h4 class="font-semibold text-gray-900">Lab Tested</h4>
+                        <p class="text-sm text-gray-600 mt-2">
+                            Each batch verified for potency and contamination-free safety.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 shadow-md border border-teal-50">
+                        <h4 class="font-semibold text-gray-900">GMP Certified</h4>
+                        <p class="text-sm text-gray-600 mt-2">
+                            Produced under strict pharmaceutical-grade standards.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 shadow-md border border-teal-50">
+                        <h4 class="font-semibold text-gray-900">ISO Approved</h4>
+                        <p class="text-sm text-gray-600 mt-2">
+                            International quality management compliance.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-6 shadow-md border border-teal-50">
+                        <h4 class="font-semibold text-gray-900">Safe Formulation</h4>
+                        <p class="text-sm text-gray-600 mt-2">
+                            No harmful chemicals or synthetic additives.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image -->
+            <div>
+                <div class="rounded-3xl overflow-hidden shadow-xl">
+                    <div class="aspect-square">
+                        {% if product.story_sections and product.story_sections.0.image %}
+                        <img src="{% static product.story_sections.0.image %}" alt="Quality Assurance" class="w-full h-full object-cover" />
+                        {% elif product.image %}
+                        <img src="{{ product.image.url }}" alt="Quality Assurance" class="w-full h-full object-cover" />
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ================= BLOCK 2: Strengthen Immunity ================= -->
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+            <!-- Image -->
+            <div>
+                <div class="rounded-3xl overflow-hidden shadow-xl">
+                    <div class="aspect-square">
+                        {% if product.story_sections and product.story_sections.1.image %}
+                        <img src="{% static product.story_sections.1.image %}" alt="Natural Immunity" class="w-full h-full object-cover" />
+                        {% elif product.image %}
+                        <img src="{{ product.image.url }}" alt="Natural Immunity" class="w-full h-full object-cover" />
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div>
+                <span class="text-teal-600 font-semibold uppercase tracking-widest text-sm">
+                    Natural Immunity
+                </span>
+
+                <h2 class="mt-4 text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight">
+                    Strengthen Your Immunity Naturally
+                </h2>
+
+                <p class="mt-6 text-lg text-gray-600 leading-relaxed">
+                    Bioayurix Advanced Immunity Formula blends ancient Ayurvedic wisdom
+                    with modern research to enhance immune resilience, improve vitality,
+                    and support long-term wellness.
+                </p>
+
+                <!-- Detailed Bullet Section -->
+                <div class="mt-10 space-y-5 text-gray-700">
+                    <div class="flex gap-4">
+                        <div class="w-8 h-8 flex items-center justify-center rounded-full bg-teal-100 text-teal-600 shrink-0">
+                            &#10003;
+                        </div>
+                        <p>Supports natural immune response &amp; cellular protection.</p>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div class="w-8 h-8 flex items-center justify-center rounded-full bg-teal-100 text-teal-600 shrink-0">
+                            &#10003;
+                        </div>
+                        <p>Reduces oxidative stress and inflammation.</p>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div class="w-8 h-8 flex items-center justify-center rounded-full bg-teal-100 text-teal-600 shrink-0">
+                            &#10003;
+                        </div>
+                        <p>Improves stamina, energy &amp; daily productivity.</p>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div class="w-8 h-8 flex items-center justify-center rounded-full bg-teal-100 text-teal-600 shrink-0">
+                            &#10003;
+                        </div>
+                        <p>100% herbal formula with no synthetic additives.</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<!-- ================= END A+ STORY SECTION ================= -->
+
+
+<!-- ================= INGREDIENTS SECTION ================= -->
+{% if product.ingredients %}
+<section class="bg-white py-20 lg:py-8">
+    <div class="max-w-7xl mx-auto px-6">
+
+        <!-- Section Heading -->
+        <div class="text-center max-w-3xl mx-auto">
+            <h2 class="text-3xl lg:text-4xl font-extrabold text-gray-900">
+                Scientifically Selected Ingredients
+            </h2>
+            <p class="mt-4 text-gray-600 text-lg">
+                Backed by Science. Powered by Nature.
+                Each ingredient is carefully chosen for its clinically proven
+                benefits and powerful health-support properties.
+            </p>
+        </div>
+
+        <!-- Ingredient Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10 mt-16">
+            {% for ingredient in product.ingredients %}
+            <div class="bg-teal-50/40 rounded-3xl p-8 shadow-sm hover:shadow-lg transition">
+                <h3 class="text-xl font-bold text-gray-900">{{ ingredient.name }}</h3>
+                <p class="mt-3 text-gray-600">
+                    {{ ingredient.description }}
+                </p>
+                {% if ingredient.label %}
+                <span class="block mt-4 text-sm text-teal-600 font-semibold">
+                    {{ ingredient.label }}
+                </span>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+{% endif %}
+<!-- ================= END INGREDIENTS SECTION ================= -->
+
+
+<!-- ================= HOW IT WORKS SECTION ================= -->
+{% if product.how_it_works_steps %}
+<section class="bg-gradient-to-b from-white to-teal-50/40 py-20 lg:py-8">
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Left: Product Image -->
+        <div class="relative">
+            <div class="absolute inset-0 bg-teal-100/40 blur-3xl rounded-3xl"></div>
+            {% if product.image %}<img src="{{ product.image.url }}" alt="{{ product.name }}" class="relative rounded-3xl" />{% endif %}
+        </div>
+
+        <!-- Right: Steps Content -->
+        <div>
+            <h2 class="text-3xl lg:text-4xl font-extrabold text-gray-900">
+                How It Works
+            </h2>
+
+            <div class="mt-8 space-y-8">
+                {% for step in product.how_it_works_steps %}
+                <div class="flex gap-6">
+                    <div class="text-3xl font-bold text-teal-600">
+                        {{ step.number|stringformat:"02d" }}
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-lg">{{ step.title }}</h4>
+                        <p class="text-gray-600 mt-2">
+                            {{ step.description }}
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+</section>
+{% endif %}
+<!-- ================= END HOW IT WORKS ================= -->
+
+
+<!-- ================= CTA SECTION ================= -->
+{% include 'includes/cta_section.html' %}
+<!-- ================= END CTA SECTION ================= -->
+{% endblock %}
+
+
+{% block extra_js %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const mainImage = document.getElementById("mainImage");
+        const thumbs = document.querySelectorAll(".thumb");
+
+        thumbs.forEach(function (thumb) {
+            thumb.addEventListener("click", function () {
+                // Fade out
+                mainImage.style.opacity = 0;
+
+                setTimeout(function () {
+                    mainImage.src = thumb.src;
+                    mainImage.style.opacity = 1;
+                }, 150);
+
+                // Reset all thumbnail borders
+                thumbs.forEach(function (t) {
+                    t.classList.remove("border-2", "border-teal-600");
+                    t.classList.add("border", "border-gray-200");
+                });
+
+                // Highlight clicked thumbnail
+                thumb.classList.remove("border", "border-gray-200");
+                thumb.classList.add("border-2", "border-teal-600");
+            });
+        });
+    });
+</script>
+{% endblock %}

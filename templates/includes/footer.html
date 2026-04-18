@@ -1,0 +1,96 @@
+{% load static %}
+<!-- ================= PREMIUM FOOTER SECTION : START ================= -->
+<footer class="bg-[#0b2c3d] text-gray-300 pt-20 pb-10 mt-1">
+    <div class="max-w-7xl mx-auto px-6">
+
+        <!-- 2 COLUMN GRID -->
+        <div class="grid md:grid-cols-2 gap-16">
+
+            <!-- LEFT SIDE : BRAND (WIDER) -->
+            <div class="md:pr-16">
+                <h3 class="text-3xl font-extrabold text-white tracking-wide">
+                    Bioayurix
+                </h3>
+
+                <p class="mt-6 text-base leading-relaxed text-gray-400 max-w-md">
+                 At Bioayurix, we unite the purity of Ayurveda with the precision of modern science.
+                 Every formulation is thoughtfully crafted to restore balance, elevate vitality, and support long-term wellness — naturally.
+                </p>
+            </div>
+
+            <!-- RIGHT SIDE : LINKS (2 INTERNAL COLUMNS) -->
+            <div class="grid sm:grid-cols-2 gap-12">
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-semibold text-lg">
+                        Quick Links
+                    </h4>
+
+                    <ul class="mt-6 space-y-3 text-sm">
+                        <li>
+                            <a href="{% url 'home' %}" class="hover:text-teal-400 transition">
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'product_list' %}" class="hover:text-teal-400 transition">
+                                Shop
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'about' %}" class="hover:text-teal-400 transition">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'contact' %}" class="hover:text-teal-400 transition">
+                                Contact
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h4 class="text-white font-semibold text-lg">
+                        Support
+                    </h4>
+
+                    <ul class="mt-6 space-y-3 text-sm">
+                        <li>
+                            <a href="{% url 'privacy_policy' %}" class="hover:text-teal-400 transition">
+                                Privacy Policy
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'terms_conditions' %}" class="hover:text-teal-400 transition">
+                                Terms &amp; Conditions
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'shipping_policy' %}" class="hover:text-teal-400 transition">
+                                Shipping Policy
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'refund_policy' %}" class="hover:text-teal-400 transition">
+                                Refund Policy
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Bottom Copyright -->
+        <div class="border-t border-white/10 mt-16 pt-8 text-center text-sm text-gray-500">
+            &copy; 2026 Bioayurix. All Rights Reserved.
+        </div>
+
+    </div>
+</footer>
+
+<!-- ================= PREMIUM FOOTER SECTION :END ================= -->

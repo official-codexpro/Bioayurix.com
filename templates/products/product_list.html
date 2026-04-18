@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}All Products - Bioayurix{% endblock %}
+
+{% block content %}
+<!-- ================= PRODUCTS HERO SECTION ================= -->
+<section class="relative mt-16 overflow-hidden">
+    <div class="absolute inset-0">
+        <img src="https://plus.unsplash.com/premium_photo-1672759455907-bdaef741cd88?q=80&w=1716&auto=format&fit=crop" class="w-full h-full object-cover" alt="Products background" />
+        <div class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-6 py-20 lg:py-24 text-center">
+        <p class="text-sm text-white/80 mb-4 tracking-wide">Home / Products</p>
+        <h1 class="text-3xl lg:text-5xl font-extrabold text-white leading-tight">Explore Our Premium Medical Products</h1>
+        <p class="mt-6 max-w-2xl mx-auto text-base lg:text-lg text-white/90">
+            Scientifically formulated herbal supplements designed to support immunity, metabolism, respiratory health, and overall wellness.
+        </p>
+    </div>
+</section>
+
+<!-- ================= PRODUCT GRID ================= -->
+<section class="relative overflow-hidden bg-gradient-to-b from-white to-teal-50/40 py-16 lg:pb-20">
+    <div class="absolute -top-24 -right-24 w-80 h-80 bg-teal-200 rounded-full blur-3xl opacity-40"></div>
+    <div class="absolute -bottom-20 -left-20 w-72 h-72 bg-teal-100 rounded-full blur-3xl opacity-50"></div>
+    <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle, #0d9488 1px, transparent 1px); background-size: 30px 30px;"></div>
+
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+            {% for product in products %}
+            <div class="group bg-white rounded-2xl border border-gray-100 shadow-md hover:shadow-xl transition duration-500 overflow-hidden">
+                <a href="{% url 'product_detail' product.slug %}">
+                    <div class="relative bg-gray-50 p-1 flex justify-center items-center">
+                        {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="h-76 object-contain transition duration-500 group-hover:scale-105">
+                        {% endif %}
+                    </div>
+                </a>
+                <div class="p-6">
+                    <h3 class="text-lg font-semibold text-gray-900">{{ product.name }}</h3>
+                    <p class="mt-2 text-sm text-gray-500">{{ product.short_description }}</p>
+                    <div class="mt-4 flex items-center gap-3">
+                        <span class="text-xl font-bold text-teal-600">₹{{ product.price }}</span>
+                    </div>
+                    <div class="relative z-20 mt-6 flex gap-3">
+
+                 <a href="{% url 'product_detail' product.slug %}"
+                    class="flex-1 py-2 text-sm text-center border border-gray-300 
+                    rounded-lg hover:bg-gray-100 transition cursor-pointer">
+                    Learn More
+                    </a>
+
+                <form method="post"
+                    action="{% url 'cart:cart_add' product.id %}"
+                    class="flex-1 relative z-20">
+                               {% csrf_token %}
+                    <input type="hidden" name="quantity" value="1">
+                    <input type="hidden" name="next" value="{% url 'product_list' %}">
+
+                    <button type="submit"
+                            class="relative z-20 w-full py-2 text-sm 
+                                bg-teal-600 text-white rounded-lg 
+                                hover:bg-teal-500 transition cursor-pointer">
+                        Add To Cart
+                 </button></form></div>
+
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-span-3 text-center py-20">
+                <p class="text-gray-500 text-lg">No products available at the moment.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% include 'includes/cta_section.html' %}
+{% endblock %}
